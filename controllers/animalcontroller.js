@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const Express = require("express");
+const router = Express.Router();
 const { Animal } = require("../models");
 
 router.post("/create", async (req, res) => {
@@ -43,6 +43,30 @@ router.delete("/delete/:id", async (req, res) => {
         }
         await Animal.destroy(query);
         res.status(200).json({message: "Animal DESTROYED"});
+    } catch (err) {
+        res.status(500).json({error: err});
+    }
+})
+
+router.put("/update/:animalId", async (req, res) => {
+    const {name, legNumber, predator} = req.body.animal;
+    const animalId = req.params.animalId;
+
+    const query = {
+        where: {
+            id: animalId
+        }
+    }
+
+    const updatedAnimal = {
+        name: name,
+        legNumber: legNumber,
+        predator: predator
+    }
+
+    try {
+        const update = await Animal.update(updatedAnimal, query);
+        res.status(200).json(update, {message: "Animal Geneticly Altered"});
     } catch (err) {
         res.status(500).json({error: err});
     }
