@@ -15,7 +15,7 @@ router.post("/create", async (req, res) => {
             password: bcrypt.hashSync(password, 13)
         });
 
-        let token = jwt.sign({id: NewUser.id}, "cats are cool man", {expiresIn: 60 * 60 * 24});
+        let token = jwt.sign({id: NewUser.id}, process.env.JWT_SECRET, {expiresIn: 60 * 60 * 24});
 
         res.status(201).json({
             message: "User successfully created",
