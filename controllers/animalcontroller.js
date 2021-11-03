@@ -48,13 +48,13 @@ router.delete("/delete/:id", async (req, res) => {
     }
 })
 
-router.put("/update/:animalId", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
     const {name, legNumber, predator} = req.body.animal;
-    const animalId = req.params.animalId;
+    const animalId = req.params.id;
 
     const query = {
         where: {
-            id: animalId
+            id: id
         }
     }
 
