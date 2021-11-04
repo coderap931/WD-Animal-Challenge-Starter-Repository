@@ -33,12 +33,12 @@ router.get("/", async (req, res) => {
 })
 
 router.delete("/delete/:id", async (req, res) => {
-    const animalId = req.params.id;
+    const id = req.params.id;
 
     try {
         const query = {
             where: {
-                id: animalId
+                id: id
             }
         }
         await Animal.destroy(query);
