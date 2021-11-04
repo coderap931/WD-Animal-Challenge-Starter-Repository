@@ -50,7 +50,7 @@ router.delete("/delete/:id", async (req, res) => {
 
 router.put("/update/:id", async (req, res) => {
     const {name, legNumber, predator} = req.body.animal;
-    const animalId = req.params.id;
+    const id = req.params.id;
 
     const query = {
         where: {
